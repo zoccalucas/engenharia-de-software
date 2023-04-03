@@ -53,7 +53,7 @@ describe('realizarMaisCursos', () => {
 
         realizarMaisCursos(aluno);
 
-        expect(aluno.media).toBeGreaterThanOrEqual(7);
+        expect(aluno.media).toBeGreaterThan(7);
         expect(aluno.cursosRealizados).toBe(5);
     });
     it('permite realizar mais 3 cursos se a média do aluno for maior que 7.0 e ele ja realizou 3 cursos adicionais', () => {
