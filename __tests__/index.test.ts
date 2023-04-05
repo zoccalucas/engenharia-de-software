@@ -27,7 +27,7 @@ function verificaSeExistemMaisCursosDisponiveis(aluno) {
 }
 
 describe('realizarMaisCursos', () => {
-    it('não permite realizar mais 3 cursos se a média do aluno for menor ou igual a 7.0', () => {
+    it('não permite realizar mais 3 cursos se a média do aluno for menor ou igual a 7.0', function naoRealizarMaisCursosMediaBaixa() {
         const aluno = {
             nome: 'Maria',
             media: 8.0,
@@ -42,7 +42,7 @@ describe('realizarMaisCursos', () => {
         expect(aluno.cursosRealizados).toBe(4);
     });
 
-    it('permite realizar mais 3 cursos se a média do aluno for maior que 7.0', () => {
+    it('permite realizar mais 3 cursos se a média do aluno for maior que 7.0', function realizarMaisCursosMediaAlta() {
         const aluno = {
             nome: 'João',
             media: 8.0,
@@ -56,7 +56,7 @@ describe('realizarMaisCursos', () => {
         expect(aluno.media).toBeGreaterThan(7);
         expect(aluno.cursosRealizados).toBe(5);
     });
-    it('permite realizar mais 3 cursos se a média do aluno for maior que 7.0 e ele ja realizou 3 cursos adicionais', () => {
+    it('permite realizar mais 3 cursos se a média do aluno for maior que 7.0 e ele ja realizou 3 cursos adicionais', function realizarMaisCursosSeAdicionais() {
         const aluno = {
             nome: 'João',
             media: 8.0,
@@ -69,7 +69,7 @@ describe('realizarMaisCursos', () => {
         
         expect(aluno.cursosAdicionais).toBe(true);
     });
-    it('não permite realizar mais cursos se o plano expirou e solicita a renovação da assinatura', () => {
+    it('não permite realizar mais cursos se o plano expirou e solicita a renovação da assinatura', function naoRealizarMaisCursosPlanoExplirou() {
         const aluno = {
             nome: 'João',
             media: 8.0,
@@ -84,7 +84,7 @@ describe('realizarMaisCursos', () => {
         expect(aluno.planoAtivo).toBe(false);
         expect(verificaSeOPlanoEstaAtivo(aluno)).toBe('Renove sua assinatura antes de realize mais cursos');
     });
-    it('não permite realizar mais cursos se não tiver mais cursos disponíveis', () => {
+    it('não permite realizar mais cursos se não tiver mais cursos disponíveis', function naoRealizarMaisCursosPorIndisponibilidade() {
         const aluno = {
             nome: 'João',
             media: 8.0,
