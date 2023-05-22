@@ -1,0 +1,7 @@
+*.js
+!scripts/*.js
+!init.js
+!commitlint.config.js
+!webpack.shared.config.js
+!webpack.config.js
+*.d.
