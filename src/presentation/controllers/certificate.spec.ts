@@ -3,19 +3,28 @@ import { MissingParamError } from '../errors/missing-param-error';
 import { InvalidParamError } from '../errors/invalid-param-error';
 import { EmailValidator } from '../protocols/email-validator';
 
-const makeSut = (): CertificateController => {
-  class EmailValidatorStub implements  EmailValidator {
-    isValid(email: string): boolean {
+interface SutTypes {
+  sut: CertificateController;
+  emailValidatorStub: EmailValidator;
+}
+
+const makeSut = (): SutTypes => {
+  class EmailValidatorStub implements EmailValidator {
+    isValid(studentEmail: string): boolean {
       return true;
     }
   }
-  const emailValidatorStub = new EmailValidatorStub()
-  return new CertificateController(emailValidatorStub);
-} 
+  const emailValidatorStub = new EmailValidatorStub();
+  const sut = new CertificateController(emailValidatorStub);
+  return {
+    sut,
+    emailValidatorStub,
+  };
+};
 
 describe('Certificate Controller', () => {
   test('Should return 400 if no studentId is provided', async () => {
-    const sut = makeSut();
+    const { sut } = makeSut();
 
     const httpRequest = {
       body: {
@@ -30,7 +39,7 @@ describe('Certificate Controller', () => {
   });
 
   test('Should return 400 if no email is provided', async () => {
-    const sut = makeSut();
+    const { sut } = makeSut();
 
     const httpRequest = {
       body: {
@@ -45,7 +54,7 @@ describe('Certificate Controller', () => {
   });
 
   test('Should return 400 if no activePlan is provided', async () => {
-    const sut = makeSut();
+    const { sut } = makeSut();
 
     const httpRequest = {
       body: {
@@ -60,7 +69,8 @@ describe('Certificate Controller', () => {
   });
 
   test('Should return 400 if an invalid studentEmail is provided', async () => {
-    const sut = makeSut();
+    const { sut, emailValidatorStub } = makeSut();
+    jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false);
 
     const httpRequest = {
       body: {
