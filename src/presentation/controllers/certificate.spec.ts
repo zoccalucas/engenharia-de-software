@@ -22,7 +22,7 @@ describe('Certificate Controller', () => {
 
     const httpRequest = {
       body: {
-        studentId: Number,
+        studentId: 'anyId',
         activePlan: true,
       },
     };
@@ -30,5 +30,20 @@ describe('Certificate Controller', () => {
     const httpResponse = sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new MissingParamError('studentEmail'));
+  });
+
+  test('Should return 400 if no activePlan is provided', async () => {
+    const sut = new CertificateController();
+
+    const httpRequest = {
+      body: {
+        studentId: 'anyId',
+        studentEmail: 'any_email@gmail.com',
+      },
+    };
+
+    const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(new MissingParamError('activePlan'));
   });
 });
