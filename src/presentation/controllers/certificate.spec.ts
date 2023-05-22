@@ -1,6 +1,7 @@
 import { CertificateController } from './certificate';
 import { MissingParamError } from '../errors/missing-param-error';
 import { InvalidParamError } from '../errors/invalid-param-error';
+import { ServerError } from '../errors/server-error';
 import { EmailValidator } from '../protocols/email-validator';
 
 interface SutTypes {
@@ -28,7 +29,7 @@ describe('Certificate Controller', () => {
 
     const httpRequest = {
       body: {
-        studentEmail: 'any_email@gmail.com',
+        studentEmail: 'anyEmail@gmail.com',
         activePlan: true,
       },
     };
@@ -59,7 +60,7 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'anyId',
-        studentEmail: 'any_email@gmail.com',
+        studentEmail: 'anyEmail@gmail.com',
       },
     };
 
@@ -75,7 +76,7 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'anyId',
-        studentEmail: 'invalid_email@gmail.com',
+        studentEmail: 'invalidEmail@gmail.com',
         activePlan: true,
       },
     };
@@ -87,18 +88,42 @@ describe('Certificate Controller', () => {
 
   test('Should call EmailValidator with correct studentEmail', async () => {
     const { sut, emailValidatorStub } = makeSut();
-    const isValidSpy = 
-    jest.spyOn(emailValidatorStub, 'isValid');
+    const isValidSpy = jest.spyOn(emailValidatorStub, 'isValid');
 
     const httpRequest = {
       body: {
         studentId: 'anyId',
-        studentEmail: 'any_email@gmail.com',
+        studentEmail: 'anyEmail@gmail.com',
         activePlan: true,
       },
     };
 
     sut.handle(httpRequest);
-    expect(isValidSpy).toHaveBeenCalledWith('any_email@gmail.com');
+    expect(isValidSpy).toHaveBeenCalledWith('anyEmail@gmail.com');
+  });
+
+  test('Should return 500 if EmailValidator throws', async () => {
+    class EmailValidatorStub implements EmailValidator {
+      isValid(studentEmail: string): boolean {
+        throw new Error();
+      }
+    }
+
+    const emailValidatorStub = new EmailValidatorStub();
+    const sut = new CertificateController(emailValidatorStub);
+    jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(() => {
+      throw new Error();
+    });
+
+    const httpRequest = {
+      body: {
+        studentId: 'anyId',
+        studentEmail: 'anyEmail@gmail.com',
+        activePlan: true,
+      },
+    };
+    const httpResponse = await sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(500);
+    expect(httpResponse.body).toEqual(new ServerError());
   });
 });
