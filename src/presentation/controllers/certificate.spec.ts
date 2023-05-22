@@ -113,12 +113,32 @@ describe('Certificate Controller', () => {
     expect(isValidSpy).toHaveBeenCalledWith('anyEmail@gmail.com');
   });
 
-  test('Should return 500 if EmailValidator throws', async () => {
+  // Utiliza Factory makeEmailValidatorWithError que gera uma instância de emailValidatorStub retornando um erro 
+  test('Should return 500 if EmailValidator throws Factory', async () => {
     const emailValidatorStub = makeEmailValidatorWithError();
     const sut = new CertificateController(emailValidatorStub);
     jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(() => {
       throw new Error();
     });
+
+    const httpRequest = {
+      body: {
+        studentId: 'anyId',
+        studentEmail: 'anyEmail@gmail.com',
+        activePlan: true,
+      },
+    };
+    const httpResponse = await sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(500);
+    expect(httpResponse.body).toEqual(new ServerError());
+  });
+
+  // Utiliza o Jest (jest.spyOn) para criar uma versão mockada da implementação retornando um erro 
+  test('Should return 500 if EmailValidator throws Jest', async () => {
+    const { sut, emailValidatorStub }  = makeSut();
+    jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(() => {
+      throw new Error();
+    })
 
     const httpRequest = {
       body: {
