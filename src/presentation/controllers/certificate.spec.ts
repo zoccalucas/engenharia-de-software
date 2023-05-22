@@ -84,4 +84,21 @@ describe('Certificate Controller', () => {
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new InvalidParamError('studentEmail'));
   });
+
+  test('Should call EmailValidator with correct studentEmail', async () => {
+    const { sut, emailValidatorStub } = makeSut();
+    const isValidSpy = 
+    jest.spyOn(emailValidatorStub, 'isValid');
+
+    const httpRequest = {
+      body: {
+        studentId: 'anyId',
+        studentEmail: 'any_email@gmail.com',
+        activePlan: true,
+      },
+    };
+
+    sut.handle(httpRequest);
+    expect(isValidSpy).toHaveBeenCalledWith('any_email@gmail.com');
+  });
 });

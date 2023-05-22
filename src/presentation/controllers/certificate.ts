@@ -20,8 +20,8 @@ export class CertificateController implements Controller {
       }
     }
 
-    const isValidEmail = this.emailValidator.isValid(httpRequest.body.studentEmail);
-    if(!isValidEmail) {
+    const isValidStudentEmail = this.emailValidator.isValid(httpRequest.body.studentEmail);
+    if(!isValidStudentEmail) {
       return badRequest(new InvalidParamError('studentEmail'));
     }
 
