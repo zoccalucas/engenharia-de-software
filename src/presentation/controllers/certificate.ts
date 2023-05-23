@@ -12,7 +12,7 @@ export class CertificateController implements Controller {
 
   handle(httpRequest: HttpRequest): HttpResponse {
     try {
-      const requiredFields = ['studentId', 'studentEmail', 'activePlan'];
+      const requiredFields = ['certificateId', 'studentId', 'studentEmail', 'activePlan'];
       for (const field of requiredFields) {
         if (!httpRequest.body[field]) {
           return badRequest(new MissingParamError(field));
