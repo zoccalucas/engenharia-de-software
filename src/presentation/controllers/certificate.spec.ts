@@ -35,11 +35,28 @@ const makeSut = (): SutTypes => {
 };
 
 describe('Certificate Controller', () => {
+  test('Should return 400 if no certificateId is provided', async () => {
+    const { sut } = makeSut();
+
+    const httpRequest = {
+      body: {
+        studentId: 'anyId',
+        studentEmail: 'invalidEmail@gmail.com',
+        activePlan: true,
+      },
+    };
+
+    const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(new MissingParamError('certificateId'));
+  });
+  
   test('Should return 400 if no studentId is provided', async () => {
     const { sut } = makeSut();
 
     const httpRequest = {
       body: {
+        certificateId: 'anyId',
         studentEmail: 'anyEmail@gmail.com',
         activePlan: true,
       },
@@ -55,6 +72,7 @@ describe('Certificate Controller', () => {
 
     const httpRequest = {
       body: {
+        certificateId: 'anyId',
         studentId: 'anyId',
         activePlan: true,
       },
@@ -70,6 +88,7 @@ describe('Certificate Controller', () => {
 
     const httpRequest = {
       body: {
+        certificateId: 'anyId',
         studentId: 'anyId',
         studentEmail: 'anyEmail@gmail.com',
       },
@@ -86,6 +105,7 @@ describe('Certificate Controller', () => {
 
     const httpRequest = {
       body: {
+        certificateId: 'anyId',
         studentId: 'anyId',
         studentEmail: 'invalidEmail@gmail.com',
         activePlan: true,
@@ -103,6 +123,7 @@ describe('Certificate Controller', () => {
 
     const httpRequest = {
       body: {
+        certificateId: 'anyId',
         studentId: 'anyId',
         studentEmail: 'anyEmail@gmail.com',
         activePlan: true,
@@ -123,6 +144,7 @@ describe('Certificate Controller', () => {
 
     const httpRequest = {
       body: {
+        certificateId: 'anyId',
         studentId: 'anyId',
         studentEmail: 'anyEmail@gmail.com',
         activePlan: true,
@@ -142,6 +164,7 @@ describe('Certificate Controller', () => {
 
     const httpRequest = {
       body: {
+        certificateId: 'anyId',
         studentId: 'anyId',
         studentEmail: 'anyEmail@gmail.com',
         activePlan: true,
