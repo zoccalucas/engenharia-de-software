@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm start
+    ports:
+      - "5050:5050"
+    volumes:
+      - .:/src/main/server.ts

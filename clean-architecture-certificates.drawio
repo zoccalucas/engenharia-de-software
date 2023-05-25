@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="MQ3bTOHc2Pmw_59HKOvL" name="Página-1">
-        <mxGraphModel dx="2011" dy="712" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+        <mxGraphModel dx="2092" dy="688" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -104,7 +104,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="18" value="" style="edgeStyle=none;html=1;elbow=vertical;" edge="1" parent="1" source="1WIkfAdYHAtrKzwX6Avq-64" target="4">
+                <mxCell id="18" value="" style="edgeStyle=none;html=1;elbow=vertical;" parent="1" source="1WIkfAdYHAtrKzwX6Avq-64" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="1WIkfAdYHAtrKzwX6Avq-64" value="DbAddCertificate" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -176,14 +176,17 @@
                 <mxCell id="1WIkfAdYHAtrKzwX6Avq-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="1WIkfAdYHAtrKzwX6Avq-139" target="1WIkfAdYHAtrKzwX6Avq-66" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;elbow=vertical;" edge="1" parent="1" source="1WIkfAdYHAtrKzwX6Avq-139" target="4">
+                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;elbow=vertical;" parent="1" source="1WIkfAdYHAtrKzwX6Avq-139" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="1WIkfAdYHAtrKzwX6Avq-139" value="LoadUserByEmailMongoRepo" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="315.5" y="125" width="200" height="55" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="LoadUserByEmailMongoRepo" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+                <mxCell id="4" value="LoadUserByEmailMongoRepo" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
                     <mxGeometry x="441" y="345" width="187" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" vertex="1" parent="1">
+                    <mxGeometry x="290" y="310" width="140" height="160" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

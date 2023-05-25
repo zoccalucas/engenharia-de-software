@@ -1,3 +1,10 @@
+import express from 'express';
 import app from './config/app';
 
-app.listen(5050, () => console.log('Server running at port 5050'));
+const PORT = 5050;
+
+app.get('/', (req, res) => {
+  res.send('Docker running');
+});
+
+app.listen(PORT, () => console.log(`Server running at ${PORT}`));
