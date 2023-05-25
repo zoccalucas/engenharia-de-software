@@ -10,7 +10,7 @@ export class CertificateController implements Controller {
     this.emailValidator = emailValidator;
   }
 
-  handle(httpRequest: HttpRequest): HttpResponse {
+  public handle(httpRequest: HttpRequest): HttpResponse {
     try {
       const requiredFields = ['certificateId', 'studentId', 'studentEmail', 'activePlan'];
 
