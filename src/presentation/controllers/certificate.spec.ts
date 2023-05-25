@@ -9,7 +9,7 @@ interface SutTypes {
 
 const makeEmailValidator = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
-    isValid(studentEmail: string): boolean {
+    public isValid(): boolean {
       return true;
     }
   }
@@ -18,7 +18,7 @@ const makeEmailValidator = (): EmailValidator => {
 
 const makeEmailValidatorWithError = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
-    isValid(studentEmail: string): boolean {
+    public isValid(): boolean {
       throw new Error();
     }
   }
@@ -30,7 +30,7 @@ const makeSut = (): SutTypes => {
   const sut = new CertificateController(emailValidatorStub);
   return {
     sut,
-    emailValidatorStub,
+    emailValidatorStub
   };
 };
 
@@ -42,15 +42,15 @@ describe('Certificate Controller', () => {
       body: {
         studentId: 'anyId',
         studentEmail: 'invalidEmail@gmail.com',
-        activePlan: true,
-      },
+        activePlan: true
+      }
     };
 
     const httpResponse = sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new MissingParamError('certificateId'));
   });
-  
+
   test('Should return 400 if no studentId is provided', async () => {
     const { sut } = makeSut();
 
@@ -58,8 +58,8 @@ describe('Certificate Controller', () => {
       body: {
         certificateId: 'anyId',
         studentEmail: 'anyEmail@gmail.com',
-        activePlan: true,
-      },
+        activePlan: true
+      }
     };
 
     const httpResponse = sut.handle(httpRequest);
@@ -74,8 +74,8 @@ describe('Certificate Controller', () => {
       body: {
         certificateId: 'anyId',
         studentId: 'anyId',
-        activePlan: true,
-      },
+        activePlan: true
+      }
     };
 
     const httpResponse = sut.handle(httpRequest);
@@ -90,8 +90,8 @@ describe('Certificate Controller', () => {
       body: {
         certificateId: 'anyId',
         studentId: 'anyId',
-        studentEmail: 'anyEmail@gmail.com',
-      },
+        studentEmail: 'anyEmail@gmail.com'
+      }
     };
 
     const httpResponse = sut.handle(httpRequest);
@@ -108,8 +108,8 @@ describe('Certificate Controller', () => {
         certificateId: 'anyId',
         studentId: 'anyId',
         studentEmail: 'invalidEmail@gmail.com',
-        activePlan: true,
-      },
+        activePlan: true
+      }
     };
 
     const httpResponse = sut.handle(httpRequest);
@@ -126,15 +126,15 @@ describe('Certificate Controller', () => {
         certificateId: 'anyId',
         studentId: 'anyId',
         studentEmail: 'anyEmail@gmail.com',
-        activePlan: true,
-      },
+        activePlan: true
+      }
     };
 
     sut.handle(httpRequest);
     expect(isValidSpy).toHaveBeenCalledWith('anyEmail@gmail.com');
   });
 
-  // Utiliza Factory makeEmailValidatorWithError que gera uma instância de emailValidatorStub retornando um erro 
+  // Utiliza Factory makeEmailValidatorWithError que gera uma instância de emailValidatorStub retornando um erro
   test('Should return 500 if EmailValidator throws Factory', async () => {
     const emailValidatorStub = makeEmailValidatorWithError();
     const sut = new CertificateController(emailValidatorStub);
@@ -147,28 +147,28 @@ describe('Certificate Controller', () => {
         certificateId: 'anyId',
         studentId: 'anyId',
         studentEmail: 'anyEmail@gmail.com',
-        activePlan: true,
-      },
+        activePlan: true
+      }
     };
     const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(500);
     expect(httpResponse.body).toEqual(new ServerError());
   });
 
-  // Utiliza o Jest (jest.spyOn) para criar uma versão mockada da implementação retornando um erro 
+  // Utiliza o Jest (jest.spyOn) para criar uma versão mockada da implementação retornando um erro
   test('Should return 500 if EmailValidator throws Jest', async () => {
-    const { sut, emailValidatorStub }  = makeSut();
+    const { sut, emailValidatorStub } = makeSut();
     jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(() => {
       throw new Error();
-    })
+    });
 
     const httpRequest = {
       body: {
         certificateId: 'anyId',
         studentId: 'anyId',
         studentEmail: 'anyEmail@gmail.com',
-        activePlan: true,
-      },
+        activePlan: true
+      }
     };
     const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(500);

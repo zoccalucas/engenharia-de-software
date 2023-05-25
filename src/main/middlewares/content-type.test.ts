@@ -1,4 +1,5 @@
 import request from 'supertest';
+
 import app from '../config/app';
 
 describe('Content Parser Middleware', () => {
@@ -14,8 +15,6 @@ describe('Content Parser Middleware', () => {
       res.type('xml');
       res.send('');
     });
-    await request(app)
-      .get('/test_content_type_xml')
-      .expect('content-type', /xml/);
+    await request(app).get('/test_content_type_xml').expect('content-type', /xml/);
   });
 });
