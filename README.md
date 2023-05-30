@@ -59,7 +59,6 @@ http://localhost:5050/api/certificate
 
 ```JSON
 {
-  "certificateId": "anyId",
   "studentId": "anyId",
   "studentEmail": "anyEmail@gmail.com",
   "activePlan": "true"
