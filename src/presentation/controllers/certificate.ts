@@ -16,20 +16,28 @@ export class CertificateController implements Controller {
   public handle(httpRequest: HttpRequest): HttpResponse {
     try {
       const requiredFields = ['studentId', 'studentEmail', 'activePlan'];
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
       for (const field of requiredFields) {
         if (!httpRequest.body[field]) {
           return badRequest(new MissingParamError(field));
         }
       }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
       const { studentId, studentEmail, activePlan } = httpRequest.body;
       const isValidStudentEmail = this.emailValidator.isValid(httpRequest.body.studentEmail);
-
       if (!isValidStudentEmail) {
         return badRequest(new InvalidParamError('studentEmail'));
       }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
       this.addCertificate.add({
         studentId,
         studentEmail,
