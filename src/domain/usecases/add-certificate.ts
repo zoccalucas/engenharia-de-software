@@ -7,5 +7,5 @@ export interface AddCertificateModel {
 }
 
 export interface AddCertificate {
-  add(certificate: AddCertificateModel): CertificateModel;
+  add(certificate: AddCertificateModel): Promise<CertificateModel>;
 }

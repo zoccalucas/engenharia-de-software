@@ -1,13 +1,6 @@
 import { CertificateController } from './certificate';
-import { CertificateModel } from '../../domain/models/certificate';
-import { AddCertificate, AddCertificateModel } from '../../domain/usecases/add-certificate';
-import { MissingParamError, InvalidParamError, ServerError } from '../errors';
-import { EmailValidator } from '../protocols';
-<<<<<<< HEAD
-=======
-import { CertificateModel } from '../../domain/models/certificate';
-import { AddCertificate, AddCertificateModel } from '../../domain/usecases/add-certificate'
->>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
+import { EmailValidator, AddCertificate, AddCertificateModel, CertificateModel } from './certificate-protocols';
+import { MissingParamError, InvalidParamError, ServerError } from '../../errors';
 
 const makeEmailValidator = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
@@ -20,22 +13,15 @@ const makeEmailValidator = (): EmailValidator => {
 
 const makeAddCertificate = (): AddCertificate => {
   class AddCertificateStub implements AddCertificate {
-    public add(certificate: AddCertificateModel): CertificateModel {
-<<<<<<< HEAD
-      return {
-=======
+    public async add(certificate: AddCertificateModel): Promise<CertificateModel> {
       const fakeCertificate = {
->>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
         id: 'validId',
         studentId: 'validId',
         studentEmail: 'validEmail@gmail.com',
         activePlan: true
-<<<<<<< HEAD
       };
-=======
-      }
-      return fakeCertificate;
->>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
+
+      return new Promise(resolve => resolve(fakeCertificate));
     }
   }
   return new AddCertificateStub();
@@ -63,11 +49,7 @@ const makeSut = (): SutTypes => {
   return {
     sut,
     emailValidatorStub,
-<<<<<<< HEAD
     addCertificateStub
-=======
-    addCertificateStub    
->>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
   };
 };
 
@@ -80,7 +62,7 @@ describe('Certificate Controller', () => {
         activePlan: true
       }
     };
-    const httpResponse = sut.handle(httpRequest);
+    const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new MissingParamError('studentId'));
   });
@@ -93,7 +75,7 @@ describe('Certificate Controller', () => {
         activePlan: true
       }
     };
-    const httpResponse = sut.handle(httpRequest);
+    const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new MissingParamError('studentEmail'));
   });
@@ -106,7 +88,7 @@ describe('Certificate Controller', () => {
         studentEmail: 'validEmail@gmail.com'
       }
     };
-    const httpResponse = sut.handle(httpRequest);
+    const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new MissingParamError('activePlan'));
   });
@@ -121,7 +103,7 @@ describe('Certificate Controller', () => {
         activePlan: true
       }
     };
-    const httpResponse = sut.handle(httpRequest);
+    const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new InvalidParamError('studentEmail'));
   });
@@ -190,6 +172,42 @@ describe('Certificate Controller', () => {
     };
     sut.handle(httpRequest);
     expect(addSPy).toHaveBeenCalledWith({
+      studentId: 'validId',
+      studentEmail: 'validEmail@gmail.com',
+      activePlan: true
+    });
+  });
+
+  test('Should return 500 if AddCertificate throws', async () => {
+    const { sut, addCertificateStub } = makeSut();
+    jest.spyOn(addCertificateStub, 'add').mockImplementationOnce(async () => {
+      return new Promise((resolve, reject) => reject(new Error()));
+    });
+    const httpRequest = {
+      body: {
+        studentId: 'validId',
+        studentEmail: 'validEmail@gmail.com',
+        activePlan: true
+      }
+    };
+    const httpResponse = await sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(500);
+    expect(httpResponse.body).toEqual(new ServerError());
+  });
+
+  test('Should return 200 if a valid data is provided', async () => {
+    const { sut } = makeSut();
+    const httpRequest = {
+      body: {
+        studentId: 'validId',
+        studentEmail: 'validEmail@gmail.com',
+        activePlan: true
+      }
+    };
+    const httpResponse = await sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(200);
+    expect(httpResponse.body).toEqual({
+      id: 'validId',
       studentId: 'validId',
       studentEmail: 'validEmail@gmail.com',
       activePlan: true
