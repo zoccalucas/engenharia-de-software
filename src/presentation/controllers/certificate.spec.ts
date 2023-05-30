@@ -3,6 +3,11 @@ import { CertificateModel } from '../../domain/models/certificate';
 import { AddCertificate, AddCertificateModel } from '../../domain/usecases/add-certificate';
 import { MissingParamError, InvalidParamError, ServerError } from '../errors';
 import { EmailValidator } from '../protocols';
+<<<<<<< HEAD
+=======
+import { CertificateModel } from '../../domain/models/certificate';
+import { AddCertificate, AddCertificateModel } from '../../domain/usecases/add-certificate'
+>>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
 
 const makeEmailValidator = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
@@ -16,12 +21,21 @@ const makeEmailValidator = (): EmailValidator => {
 const makeAddCertificate = (): AddCertificate => {
   class AddCertificateStub implements AddCertificate {
     public add(certificate: AddCertificateModel): CertificateModel {
+<<<<<<< HEAD
       return {
+=======
+      const fakeCertificate = {
+>>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
         id: 'validId',
         studentId: 'validId',
         studentEmail: 'validEmail@gmail.com',
         activePlan: true
+<<<<<<< HEAD
       };
+=======
+      }
+      return fakeCertificate;
+>>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
     }
   }
   return new AddCertificateStub();
@@ -49,7 +63,11 @@ const makeSut = (): SutTypes => {
   return {
     sut,
     emailValidatorStub,
+<<<<<<< HEAD
     addCertificateStub
+=======
+    addCertificateStub    
+>>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
   };
 };
 
