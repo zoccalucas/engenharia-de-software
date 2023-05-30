@@ -1,8 +1,6 @@
-import { AddCertificate } from '../../domain/usecases/add-certificate';
-import { MissingParamError, InvalidParamError } from '../errors';
-import { badRequest, serverError } from '../helpers/http-helper';
-import { HttpRequest, HttpResponse, Controller } from '../protocols';
-import { EmailValidator } from '../protocols/email-validator';
+import { HttpRequest, HttpResponse, Controller, AddCertificate, EmailValidator } from './certificate-protocols';
+import { MissingParamError, InvalidParamError } from '../../errors';
+import { badRequest, serverError, ok } from '../../helpers/http-helper';
 
 export class CertificateController implements Controller {
   private readonly emailValidator: EmailValidator;
@@ -13,40 +11,30 @@ export class CertificateController implements Controller {
     this.addCertificate = addCertificate;
   }
 
-  public handle(httpRequest: HttpRequest): HttpResponse {
+  public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const requiredFields = ['studentId', 'studentEmail', 'activePlan'];
-<<<<<<< HEAD
 
-=======
->>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
       for (const field of requiredFields) {
         if (!httpRequest.body[field]) {
           return badRequest(new MissingParamError(field));
         }
       }
-<<<<<<< HEAD
 
-=======
->>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
       const { studentId, studentEmail, activePlan } = httpRequest.body;
       const isValidStudentEmail = this.emailValidator.isValid(httpRequest.body.studentEmail);
+
       if (!isValidStudentEmail) {
         return badRequest(new InvalidParamError('studentEmail'));
       }
-<<<<<<< HEAD
 
-=======
->>>>>>> 15815358264206bd5356ea2a695d2927c262b2b0
-      this.addCertificate.add({
+      const certificate = await this.addCertificate.add({
         studentId,
         studentEmail,
         activePlan
       });
-      return {
-        statusCode: 200,
-        body: 'Success'
-      };
+
+      return ok(certificate);
     } catch (error) {
       return serverError();
     }
