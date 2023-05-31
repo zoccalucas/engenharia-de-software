@@ -6,8 +6,13 @@ const makeAddCertificateRepository = (): AddCertificateRepository => {
     public async add(certificateData: AddCertificateModel): Promise<CertificateModel> {
       const fakeCertificate = {
         id: 'validId',
+<<<<<<< HEAD
         studentId: 'validId',
         studentEmail: 'validEmail@mail.com',
+=======
+        studentId: 'string',
+        studentEmail: 'string',
+>>>>>>> 59014b9dbd70cb607e7e391925b8bd95de5dcff3
         activePlan: true
       };
       return new Promise(resolve => resolve(fakeCertificate));

@@ -41,10 +41,10 @@
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "ttab": "0.8.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "@types/validator": "^13.7.17"
   },
   "dependencies": {
-    "@types/validator": "^13.7.17",
     "express": "^4.18.2",
     "fast-glob": "^3.2.12",
     "validator": "^13.9.0"
