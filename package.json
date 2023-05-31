@@ -16,6 +16,8 @@
     "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^2.0.3",
+    "@types/mongodb": "^4.0.7",
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
     "@eduzz/eslint-config-houston": "^1.5.0",
@@ -47,6 +49,13 @@
   "dependencies": {
     "express": "^4.18.2",
     "fast-glob": "^3.2.12",
-    "validator": "^13.9.0"
+    "validator": "^13.9.0",
+    "mongodb": "^4.1.1"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   }
 }
