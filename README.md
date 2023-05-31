@@ -70,7 +70,7 @@ npm run test:unit
 npm run test:integration
 ```
 
-## Teste CI (rodar antes de realizar um pull no projeto)
+## Teste CI
 
 ```bash
 npm run test:ci
