@@ -11,8 +11,17 @@ describe('Certificate Mongo Repository', () => {
     await MongoHelper.disconnect();
   });
 
+  beforeEach(async () => {
+    const certificaCollection = MongoHelper.getCollection('certificates');
+    await certificaCollection.deleteMany({});
+  });
+
+  const makeSut = (): CertificateMongoRepository => {
+    return new CertificateMongoRepository();
+  };
+
   test('Should return an account on success', async () => {
-    const sut = new CertificateMongoRepository();
+    const sut = makeSut();
     const certificate = await sut.add({
       studentId: 'validId',
       studentEmail: 'validEmail',
