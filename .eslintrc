@@ -1,6 +1,7 @@
 {
   "extends": ["@eduzz/eslint-config-houston"],
   "rules": {
-    "sonarjs/no-duplicate-string": "off"
+    "sonarjs/no-duplicate-string": "off",
+    "@typescript-eslint/no-require-imports": "off"
   }
 }

@@ -5,3 +5,4 @@
 !webpack.shared.config.js
 !webpack.config.js
 *.d.
+coverage
