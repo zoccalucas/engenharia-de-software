@@ -1,10 +1,10 @@
 # Engenharia de Software II - Prática ATDD
 
-# Descrição:
+# Descrição
 
-API em NodeJs utilizando Typescript, TDD, Clean Architecture, Design Patterns e SOLID principles
+*API* em *NodeJs* utilizando *Typescript, TDD, Clean Architecture, Design Patterns e SOLID principles*
 
-# Objetivos:
+# Objetivos
 
 - Praticar e analisar como a praticar a estratégia de testes na abordagem agile, que preconiza "testes em todo o ciclo de desenvolvimento" desde a User Story até os testes.
 
@@ -12,15 +12,21 @@ API em NodeJs utilizando Typescript, TDD, Clean Architecture, Design Patterns e 
 
 - A equipe deverá entender a importância do trabalho do pessoal de Business (Cliente, PO, Designer e Usuários) em parceria com DEVs (Testadores e Desenvolvedores).
 
-# Estudo de Caso:
+# Arquitetura 
 
-## Gamificação para engajamento de educação continuada
+Para este projeto está sendo utilizado o padrão de arquitetura *Clean Architecture*.
 
-Uma determinada plataforma vende cursos online e EAD no modelo de assinaturas. O aluno paga um valor mensal e tem acesso a um conjunto de cursos para assinatura básica. A cada curso terminado e com média acima de 7,0, o aluno tem direito a realização de mais 3 cursos. O aluno que escrever mais tópicos no fórum e ajudar outros participantes com seus comentários, ganha um curso no final do mês. Quando o aluno conquistar 12 cursos, seu plano de assinatura passa a ser “Premium” e ele passa a receber voucher para participar de projetos reais, durante os cursos, e receber 3 moedas, que podem ser convertidas em conhecimento (novos cursos), acumular ou receber por criptomoeda.
+A ideia central da *Clean Architecture* é criar um sistema altamente testável, flexível e independente de *frameworks* externos. Ela define uma série de camadas e componentes que separam as responsabilidades e estabelecem uma hierarquia clara de dependências.
 
-# Execução do projeto:
+Além disso, a *Clean Architecture* promove fortemente a testabilidade, facilitando a criação de testes unitários e de integração. Como as camadas são altamente independentes, é mais fácil isolar e testar cada componente individualmente.
 
-## NPM:
+Em resumo, a *Clean Architecture* é um padrão arquitetural que visa criar sistemas modulares, testáveis e flexíveis, com foco na separação de preocupações e na manutenção da lógica de negócio central independente de detalhes de implementação. Ela ajuda a garantir a qualidade, a escalabilidade e a longevidade dos projetos de software.
+
+![Clean Architecture](./docs/clean-architecture-certificates.png)
+
+# Execução do projeto
+
+## NPM
 
 - Instale o [Npm](https://www.npmjs.com/);
 - Instale o [NodeJs](https://nodejs.org/en/);
@@ -30,7 +36,7 @@ Uma determinada plataforma vende cursos online e EAD no modelo de assinaturas. O
 
 ---
 
-## DOCKER:
+## DOCKER
 
 - Instale o docker [Docker](https://docs.docker.com/?_gl=1*1i2xyt5*_ga*NDQyNjY0Mjg5LjE2ODUwNTEzNzU.*_ga_XJWPQMJYHQ*MTY4NTA1MTM3NS4xLjEuMTY4NTA1MTM3NS42MC4wLjA.);
 - Clone o repositório;
