@@ -107,7 +107,7 @@ http://localhost:5050/api/certificate
 ```JSON
 {
   "studentId": "validId",
-  "studentEmail": "validEmail@gmail.com",
+  "studentEmail": "validEmail@mail.com",
   "activePlan": true
 }
 ```
@@ -120,7 +120,7 @@ Status HTTP: 200 OK
 {
   "id": "validId",
   "studentId": "validId",
-  "studentEmail": "validEmail@gmail.com",
+  "studentEmail": "validEmail@mail.com",
   "activePlan": true
 }
 ```
