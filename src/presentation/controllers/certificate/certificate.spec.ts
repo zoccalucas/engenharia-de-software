@@ -17,7 +17,7 @@ const makeAddCertificate = (): AddCertificate => {
       const fakeCertificate = {
         id: 'validId',
         studentId: 'validId',
-        studentEmail: 'validEmail@gmail.com',
+        studentEmail: 'validEmail@mail.com',
         activePlan: true
       };
 
@@ -58,7 +58,7 @@ describe('Certificate Controller', () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
-        studentEmail: 'validEmail@gmail.com',
+        studentEmail: 'validEmail@mail.com',
         activePlan: true
       }
     };
@@ -85,7 +85,7 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'validId',
-        studentEmail: 'validEmail@gmail.com'
+        studentEmail: 'validEmail@mail.com'
       }
     };
     const httpResponse = await sut.handle(httpRequest);
@@ -99,7 +99,7 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'validId',
-        studentEmail: 'invalidEmail@gmail.com',
+        studentEmail: 'invalidEmail@mail.com',
         activePlan: true
       }
     };
@@ -114,12 +114,12 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'validId',
-        studentEmail: 'validEmail@gmail.com',
+        studentEmail: 'validEmail@mail.com',
         activePlan: true
       }
     };
     sut.handle(httpRequest);
-    expect(isValidSpy).toHaveBeenCalledWith('validEmail@gmail.com');
+    expect(isValidSpy).toHaveBeenCalledWith('validEmail@mail.com');
   });
 
   // Utiliza Factory makeEmailValidatorWithError que gera uma instância de emailValidatorStub retornando um erro
@@ -133,7 +133,7 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'validId',
-        studentEmail: 'validEmail@gmail.com',
+        studentEmail: 'validEmail@mail.com',
         activePlan: true
       }
     };
@@ -151,7 +151,7 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'validId',
-        studentEmail: 'validEmail@gmail.com',
+        studentEmail: 'validEmail@mail.com',
         activePlan: true
       }
     };
@@ -166,14 +166,14 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'validId',
-        studentEmail: 'validEmail@gmail.com',
+        studentEmail: 'validEmail@mail.com',
         activePlan: true
       }
     };
     sut.handle(httpRequest);
     expect(addSPy).toHaveBeenCalledWith({
       studentId: 'validId',
-      studentEmail: 'validEmail@gmail.com',
+      studentEmail: 'validEmail@mail.com',
       activePlan: true
     });
   });
@@ -186,7 +186,7 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'validId',
-        studentEmail: 'validEmail@gmail.com',
+        studentEmail: 'validEmail@mail.com',
         activePlan: true
       }
     };
@@ -200,7 +200,7 @@ describe('Certificate Controller', () => {
     const httpRequest = {
       body: {
         studentId: 'validId',
-        studentEmail: 'validEmail@gmail.com',
+        studentEmail: 'validEmail@mail.com',
         activePlan: true
       }
     };
@@ -209,7 +209,7 @@ describe('Certificate Controller', () => {
     expect(httpResponse.body).toEqual({
       id: 'validId',
       studentId: 'validId',
-      studentEmail: 'validEmail@gmail.com',
+      studentEmail: 'validEmail@mail.com',
       activePlan: true
     });
   });

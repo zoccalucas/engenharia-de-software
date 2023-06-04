@@ -8,7 +8,7 @@ describe('Certificate Routes', () => {
       .post('/api/certificate')
       .send({
         studentId: 'validId',
-        studentEmail: 'validEmail@gmail.com',
+        studentEmail: 'validEmail@mail.com',
         activePlan: true
       })
       .expect(200);
