@@ -98,6 +98,8 @@ Este endpoint adiciona o certificado para o estudante com o ID correspondente. A
 
 http://localhost:5050/api/certificate
 
+_Obs: caso você possua uma variável de ambiente (env) setada para `PORT` ela será utilizada ao invés da 5050._
+
 ## Método
 
 `POST`
