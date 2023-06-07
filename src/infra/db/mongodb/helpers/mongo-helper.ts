@@ -5,14 +5,12 @@ export const MongoHelper = {
   uri: null as string | null,
 
   async connect(uri: string): Promise<void> {
-    this.uri = uri;
     this.client = await MongoClient.connect(uri);
   },
 
   async disconnect(): Promise<void> {
     if (this.client) {
       await this.client.close();
-      this.client = null;
     }
   },
 

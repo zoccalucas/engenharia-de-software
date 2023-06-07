@@ -9,6 +9,6 @@ MongoHelper.connect(env.mongoUrl)
       res.send('Docker is running');
     });
 
-    app.listen(env.port, () => console.log(`Server running at ${env.port}`));
+    app.listen(env.port, () => console.log(`Server running at http://localhost:${env.port}`));
   })
   .catch(console.error);
