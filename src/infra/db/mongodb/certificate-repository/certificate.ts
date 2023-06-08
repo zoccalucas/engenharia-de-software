@@ -5,7 +5,7 @@ import { MongoHelper } from '../helpers/mongo-helper';
 
 export class CertificateMongoRepository implements AddCertificateRepository {
   public async add(certificateData: AddCertificateModel): Promise<CertificateModel> {
-    const certificateCollection = MongoHelper.getCollection('certificates');
+    const certificateCollection = await MongoHelper.getCollection('certificates');
     const result = await certificateCollection.insertOne(certificateData);
     return MongoHelper.map(result.ops[0]);
   }

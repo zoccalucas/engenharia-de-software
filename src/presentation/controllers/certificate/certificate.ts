@@ -36,6 +36,7 @@ export class CertificateController implements Controller {
 
       return ok(certificate);
     } catch (error) {
+      console.error(error);
       return serverError();
     }
   }
