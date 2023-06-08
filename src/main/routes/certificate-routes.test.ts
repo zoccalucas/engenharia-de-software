@@ -5,8 +5,8 @@ import app from '../config/app';
 
 describe('Certificate Routes', () => {
   beforeAll(async () => {
-    const mongoURL = process.env.MONGO_URL || 'mongodb://l ocalhost:27017/database';
-    await MongoHelper.connect(mongoURL);
+    const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/database';
+    await MongoHelper.connect(mongoUrl);
   });
 
   afterAll(async () => {
@@ -14,7 +14,7 @@ describe('Certificate Routes', () => {
   });
 
   beforeEach(async () => {
-    const certificaCollection = MongoHelper.getCollection('certificates');
+    const certificaCollection = await MongoHelper.getCollection('certificates');
     await certificaCollection.deleteMany({});
   });
 

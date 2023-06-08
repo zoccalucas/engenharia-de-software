@@ -1,10 +1,11 @@
 import { CertificateMongoRepository } from './certificate';
 import { MongoHelper } from '../helpers/mongo-helper';
 
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/database';
+
 describe('Certificate Mongo Repository', () => {
   beforeAll(async () => {
-    const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/database';
-    await MongoHelper.connect(mongoURL);
+    await MongoHelper.connect(mongoUrl);
   });
 
   afterAll(async () => {
@@ -12,7 +13,7 @@ describe('Certificate Mongo Repository', () => {
   });
 
   beforeEach(async () => {
-    const certificaCollection = MongoHelper.getCollection('certificates');
+    const certificaCollection = await MongoHelper.getCollection('certificates');
     await certificaCollection.deleteMany({});
   });
 
