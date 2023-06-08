@@ -1,12 +1,8 @@
 import { Router } from 'express';
 
+import { adaptRoute } from '../adapters/express-route-adapter';
+import { makeCertificateController } from '../factories/certificate';
+
 export default (router: Router): void => {
-  router.post('/certificate', (req, res) => {
-    res.json({
-      id: 'validId',
-      studentId: 'validId',
-      studentEmail: 'validEmail@mail.com',
-      activePlan: true
-    });
-  });
+  router.post('/certificate', adaptRoute(makeCertificateController()));
 };
