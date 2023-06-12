@@ -4,18 +4,6 @@ import { MongoHelper } from '../helpers/mongo-helper';
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/database';
 
 describe('Certificate Mongo Repository', () => {
-  beforeAll(async () => {
-    await MongoHelper.connect(mongoUrl);
-  });
-
-  afterAll(async () => {
-    await MongoHelper.disconnect();
-  });
-
-  beforeEach(async () => {
-    const certificaCollection = await MongoHelper.getCollection('certificates');
-    await certificaCollection.deleteMany({});
-  });
 
   const makeSut = (): CertificateMongoRepository => {
     return new CertificateMongoRepository();
@@ -30,8 +18,8 @@ describe('Certificate Mongo Repository', () => {
     });
     expect(certificate).toBeTruthy();
     expect(certificate.id).toBeTruthy();
-    expect(certificate.studentId).toBe('validId');
-    expect(certificate.studentEmail).toBe('validEmail');
+    expect(certificate.studentId).toBe('123');
+    expect(certificate.studentEmail).toBe('validEmail@gmail.com');
     expect(certificate.activePlan).toBe(true);
   });
 });
