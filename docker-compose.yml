@@ -30,3 +30,11 @@ services:
       - "5052:5050"
     volumes:
       - .:/src/main
+
+  database:
+    image: mongo
+    volumes:
+      - db-volume:/data/db
+
+volumes:
+  db-volume:

@@ -4,18 +4,6 @@ import { MongoHelper } from '../helpers/mongo-helper';
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/database';
 
 describe('Certificate Mongo Repository', () => {
-  beforeAll(async () => {
-    await MongoHelper.connect(mongoUrl);
-  });
-
-  afterAll(async () => {
-    await MongoHelper.disconnect();
-  });
-
-  beforeEach(async () => {
-    const certificaCollection = await MongoHelper.getCollection('certificates');
-    await certificaCollection.deleteMany({});
-  });
 
   const makeSut = (): CertificateMongoRepository => {
     return new CertificateMongoRepository();
