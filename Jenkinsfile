@@ -11,7 +11,7 @@ pipeline {
     stage('Setup') {
       steps {
         script {
-          echo "sh 'npm install'"
+          sh 'npm install'
         }
       }
     }
@@ -19,7 +19,7 @@ pipeline {
     stage('Unit Tests') {
       steps {
         script {
-          echo "sh 'npm run test:unit'"
+          sh 'npm run test:unit'
         }
       }
     }
@@ -27,7 +27,7 @@ pipeline {
     stage('Integration Tests') {
       steps {
         script {
-          echo "sh 'npm run test:integration'"
+          sh 'npm run test:integration'
         }
       }
     }
@@ -35,8 +35,8 @@ pipeline {
     stage('Build and Publish Docker Image') {
       steps {
         script {
-          echo "sh 'docker build -t my-docker-image .'"
-          echo "sh 'docker push my-docker-image'"
+          sh 'docker build -t my-docker-image .'
+          sh 'docker push my-docker-image'
         }
       }
     }
@@ -44,14 +44,14 @@ pipeline {
     stage('Quality Reports') {
       steps {
         script {
-          echo "sh 'npm run test:ci'"
+          sh 'npm run test:ci'
         }
       }
     }
 
     stage('Post-Build Notification') {
       steps {
-        echo "slackSend (color: '#36a64f', message: 'Build successful!', tokenCredentialId: 'slack-token', channel: '#clean-ts-api')"
+        slackSend (color: '#36a64f', message: 'Build successful!', tokenCredentialId: 'slack-token', channel: '#clean-ts-api')
       }
     }
 
