@@ -35,7 +35,7 @@ pipeline {
 
     stage('Build and Publish Docker Image') {
       steps {
-        echo 'Build and Publechoish Docker Image'
+        dockerapp = docker.build("lucaszocca/clean-ts-api", '-f ./src/Dockerfile ./src')
       }
     }
 
