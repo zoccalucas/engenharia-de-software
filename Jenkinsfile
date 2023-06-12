@@ -11,8 +11,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-         echo "sh 'npm install'"
-         echo "application build"
+          sh 'npm install'
         }
       }
     }
@@ -20,7 +19,7 @@ pipeline {
     stage('Unit Tests') {
       steps {
         script {
-         echo "sh 'npm run test:unit'"
+          sh 'npm run test:unit'
         }
       }
     }
@@ -28,21 +27,24 @@ pipeline {
     stage('Integration Tests') {
       steps {
         script {
-         echo "sh 'npm run test:integration'"
+          sh 'npm run test:integration'
         }
       }
     }
 
     stage('Build and Publish Docker Image') {
       steps {
-        dockerapp = docker.build("lucaszocca/clean-ts-api", '-f ./src/Dockerfile ./src')
+        script {
+          sh 'docker build -t clean-node-api .'
+          sh 'docker push clean-node-api'
+        }
       }
     }
 
     stage('Quality Reports') {
       steps {
         script {
-         echo "sh 'npm run test:ci'"
+          sh 'npm run test:ci'
         }
       }
     }
