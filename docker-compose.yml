@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  app:
+  app-dev:
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,4 +9,24 @@ services:
     ports:
       - "5050:5050"
     volumes:
-      - .:/src/main/server.ts
+      - .:/src/main
+
+  app-staging:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run staging
+    ports:
+      - "5051:5050"
+    volumes:
+      - .:/src/main
+
+  app-production:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run production
+    ports:
+      - "5052:5050"
+    volumes:
+      - .:/src/main

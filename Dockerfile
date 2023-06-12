@@ -1,9 +1,9 @@
-FROM node:alpine 
+FROM node:alpine
 
-WORKDIR /src/main/server.ts
+WORKDIR /src/main
 
-COPY package*.json /src/main/server.ts/
-RUN npm install 
+COPY package*.json ./
+RUN npm install
 
 COPY . .
 
