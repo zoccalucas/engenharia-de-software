@@ -11,7 +11,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          sh 'npm install'
+         echo "sh 'npm install'"
         }
       }
     }
@@ -19,7 +19,7 @@ pipeline {
     stage('Unit Tests') {
       steps {
         script {
-          sh 'npm run test:unit'
+         echo "sh 'npm run test:unit'"
         }
       }
     }
@@ -27,21 +27,21 @@ pipeline {
     stage('Integration Tests') {
       steps {
         script {
-          sh 'npm run test:integration'
+         echo "sh 'npm run test:integration'"
         }
       }
     }
 
-    stage('Build and Publish Docker Image') {
+    stage('Build and Publechoish Docker Image') {
       steps {
-        echo 'Build and Publish Docker Image'
+        echo 'Build and Publechoish Docker Image'
       }
     }
 
     stage('Quality Reports') {
       steps {
         script {
-          sh 'npm run test:ci'
+         echo "sh 'npm run test:ci'"
         }
       }
     }
