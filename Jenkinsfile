@@ -12,6 +12,7 @@ pipeline {
       steps {
         script {
          echo "sh 'npm install'"
+         echo "application build"
         }
       }
     }
@@ -32,7 +33,7 @@ pipeline {
       }
     }
 
-    stage('Build and Publechoish Docker Image') {
+    stage('Build and Publish Docker Image') {
       steps {
         echo 'Build and Publechoish Docker Image'
       }
