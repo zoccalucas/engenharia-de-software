@@ -54,5 +54,11 @@ pipeline {
         echo "slackSend (color: '#36a64f', message: 'Build successful!', tokenCredentialId: 'slack-token', channel: '#clean-ts-api')"
       }
     }
+
+    stage('Deploy') {
+      steps {
+        echo "deploy"
+      }
+    }
   }
 }
