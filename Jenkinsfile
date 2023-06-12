@@ -21,6 +21,7 @@ pipeline {
       steps {
         script {
           sh 'npm install'
+          sh 'npm install'
         }
       }
     }
@@ -28,6 +29,7 @@ pipeline {
     stage('Unit Tests') {
       steps {
         script {
+          sh 'npm run test:unit'
           sh 'npm run test:unit'
         }
       }
@@ -37,6 +39,7 @@ pipeline {
       steps {
         script {
           sh 'npm run test:integration'
+          sh 'npm run test:integration'
         }
       }
     }
@@ -44,6 +47,7 @@ pipeline {
     stage('Quality Reports') {
       steps {
         script {
+          sh 'npm run test:ci'
           sh 'npm run test:ci'
         }
       }
