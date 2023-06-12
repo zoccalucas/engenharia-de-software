@@ -22,6 +22,7 @@ services:
       - .:/src/main
 
   app-production:
+    container_name: setup-nodejs
     build:
       context: .
       dockerfile: Dockerfile

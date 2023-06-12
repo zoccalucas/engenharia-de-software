@@ -18,8 +18,8 @@ describe('Certificate Mongo Repository', () => {
     });
     expect(certificate).toBeTruthy();
     expect(certificate.id).toBeTruthy();
-    expect(certificate.studentId).toBe('validId');
-    expect(certificate.studentEmail).toBe('validEmail');
+    expect(certificate.studentId).toBe('123');
+    expect(certificate.studentEmail).toBe('validEmail@gmail.com');
     expect(certificate.activePlan).toBe(true);
   });
 });
